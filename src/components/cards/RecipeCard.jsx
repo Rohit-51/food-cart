@@ -3,7 +3,7 @@ import React from 'react'
 const RecipeCard = ({recipe}) => {
   return (
     <>
-        <div className='w-[200px] rounded-[8px] hover:border-[1px] border-[#B2BEB5]'>
+        <div className='w-[200px] rounded-[8px] border-[1px] border-transparent hover:border-[1px] hover:border-[#B2BEB5] shadow-xl'>
           <div>
               <img
                 className='w-[200px] h-[150px] rounded-t-[8px]' 

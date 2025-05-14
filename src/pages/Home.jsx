@@ -4,6 +4,7 @@ import { cardsUrl } from '../../constants';
 import useFetchApi from '../utils/hooks/useFetchApi';
 import useOnlineStatus from '../utils/hooks/useOnlineStatus';
 import { Link } from 'react-router-dom';
+import recipeCardHoc from '../utils/hooks/HOC/recipeCardHoc';
 
 
 const Home = () => {
@@ -12,6 +13,8 @@ const Home = () => {
     const [filterRecipes, setFilterRecipes] = useState([]);
     const {data, loading, error} = useFetchApi({apiUrl:cardsUrl});
     const onlineStatus = useOnlineStatus();
+
+    const PermotedRecipeCard = recipeCardHoc(RecipeCard)
   
     useEffect(() => {
       // const fetchRecipiesData = async () => {
@@ -80,7 +83,10 @@ const Home = () => {
             </div>
             <div className='flex justify-center items-center gap-[20px] flex-wrap'>
                 {filterRecipes?.map((item, index) => (
-                <Link to={`/restaurant/${item?.info?.id}`} key={item?.info?.id}><RecipeCard recipe={item}/></Link>
+                <Link to={`/restaurant/${item?.info?.id}`} key={item?.info?.id}>
+                    {console.log("item", item?.info?.permoted)}
+                    {item?.info?.permoted ? <PermotedRecipeCard recipe={item} /> : <RecipeCard recipe={item} /> }
+                </Link>
                 ))}
             </div>
         </>
