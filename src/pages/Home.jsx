@@ -4,7 +4,7 @@ import { cardsUrl } from '../../constants';
 import useFetchApi from '../utils/hooks/useFetchApi';
 import useOnlineStatus from '../utils/hooks/useOnlineStatus';
 import { Link } from 'react-router-dom';
-import recipeCardHoc from '../utils/hooks/HOC/recipeCardHoc';
+import recipeCardHoc from '../utils/HOC/recipeCardHoc';
 
 
 const Home = () => {
