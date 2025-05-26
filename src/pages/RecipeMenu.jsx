@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import { IoMdArrowDropdown } from "react-icons/io";
+import { addItem } from '../reduxStore/cartStore';
+import { useDispatch, useSelector } from 'react-redux';
 
 const RecipeMenu = () => {
     const [restaurantData, setRestaurantData] = useState("");
     const [showRecipesList, setShowRecipesList] = useState(false);
     const [showRecipeIndex, setShowRecipeIndex] = useState('');
     const {resId} = useParams();
-    console.log("params", resId)
+    const cartData = useSelector(state => state.cart.cart);
+	console.log("cartData", cartData)
     
 
     useEffect(() => {
@@ -52,6 +55,7 @@ console.log("restaurantData>>>>>>>>", restaurantData)
 export default RecipeMenu;
 
 const RecipeMenuCard = ({data, showRecipesList, setShowRecipesList}) => {
+
     return (
         <div className='w-[500px] p-4 border-[1px] border-[#B2BEB5] rounded-[8px] text-[#000] font-bold'>
             <div 
@@ -77,6 +81,8 @@ const RecipeMenuCard = ({data, showRecipesList, setShowRecipesList}) => {
 };
 
 const RecipeList = ({listInfo}) => {
+    const dispatch = useDispatch();
+
     return (
         <div className='w-full flex justify-between items-center gap-5 border-b border-b-[#B2BEB5] p-4'>
             <div className='font-normal w-9/12'>
@@ -84,8 +90,22 @@ const RecipeList = ({listInfo}) => {
                 <p>Rs {(listInfo?.price || listInfo?.defaultPrice) /100}</p>
                 <p>{listInfo?.description}</p>
             </div>
-            <div className='3/12'>
-                <img src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${listInfo?.imageId}`} alt='recipeImg' className='w-[100px] h-[100px]' />
+            <div className='w-3/12 flex flex-col gap-5'>
+                <div>
+                    <img src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${listInfo?.imageId}`} alt='recipeImg' className='w-[100px] h-[100px]' />
+                </div>
+                <button 
+                    className='text-white bg-[#000] px-2 py-1 rounded-[6px] cursor-pointer'
+                    onClick={() => dispatch(addItem({
+                        id:listInfo?.id,
+                        name: listInfo?.name,
+                        price:(listInfo?.price || listInfo?.defaultPrice) /100,
+                        quantity:1,
+                        imageSrc:`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${listInfo?.imageId}`
+                    }))}
+                >
+                    Add
+                </button>
             </div>
         </div>
     )

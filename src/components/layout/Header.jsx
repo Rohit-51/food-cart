@@ -20,7 +20,12 @@ const Header = () => {
                   </Link>
                 </li>
                 <li className='bg-cyan-500 px-2 rounded-[5px] text-white dark:text-black cursor-pointer'>Contact us</li>
-                <li className='bg-cyan-500 px-2 rounded-[5px] text-white dark:text-black cursor-pointer'>Cart</li>
+                <li 
+                className='bg-cyan-500 px-2 rounded-[5px] text-white dark:text-black cursor-pointer'>
+                  <Link to="/cart">
+                    Cart
+                  </Link>
+                </li>
             </ul>
         </div>
     </div>

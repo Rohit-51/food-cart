@@ -31,8 +31,8 @@ const Home = () => {
       //  fetchRecipiesData();
        if(data) {
            console.log("data", data)
-        setRecipiesData(data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilterRecipes(data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setRecipiesData(data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilterRecipes(data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
        }
     }, [data]);
     useEffect(() => {

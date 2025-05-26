@@ -6,7 +6,10 @@ import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
 import RecipeMenu from './pages/RecipeMenu.jsx'
 import Error from './pages/Error.jsx'
+import Cart from './pages/Cart.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import store from './reduxStore/store'
+import { Provider } from 'react-redux'
 
 const routers = createBrowserRouter([
   {
@@ -25,6 +28,10 @@ const routers = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RecipeMenu />
+      },
+      {
+        path: "/cart",
+        element: <Cart />
       }
     ]
   }
@@ -32,6 +39,8 @@ const routers = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={routers} />
+    <Provider store={store}>
+      <RouterProvider router={routers} />
+    </Provider>
   </StrictMode>,
 )
